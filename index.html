@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Chamada - Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Botão de tradução no topo -->
+    <div class="language-selector">
+        <button id="btn-pt" class="lang-btn active" onclick="changeLanguage('pt')">🇧🇷 PT</button>
+        <button id="btn-es" class="lang-btn" onclick="changeLanguage('es')">🇵🇾 ES</button>
+    </div>
+
+    <!-- Tela de Login -->
+    <div id="login-screen" class="screen active">
+        <div class="container">
+            <div class="login-box">
+                <h1 data-translate="login_title">Sistema de Chamada</h1>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username" data-translate="username">Usuário:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" data-translate="password">Senha:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" data-translate="login_button">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela Principal (Lista de Turmas) -->
+    <div id="main-screen" class="screen">
+        <div class="container">
+            <div class="header">
+                <h1 data-translate="main_title">Minhas Turmas</h1>
+                <button class="logout-btn" onclick="logout()" data-translate="logout">Sair</button>
+            </div>
+            <div class="turmas-list">
+                <div class="turma-card" onclick="openTurma('3-tecnico')">
+                    <h3 data-translate="turma_3_tecnico">3º Técnico em Informática</h3>
+                    <p data-translate="students_count">25 alunos</p>
+                </div>
+                <div class="turma-card" onclick="openTurma('2-tecnico')">
+                    <h3 data-translate="turma_2_tecnico">2º Técnico em Informática</h3>
+                    <p data-translate="students_count_2">22 alunos</p>
+                </div>
+                <div class="turma-card" onclick="openTurma('1-medio')">
+                    <h3 data-translate="turma_1_medio">1º Ensino Médio</h3>
+                    <p data-translate="students_count_3">30 alunos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela da Turma (Lista de Alunos) -->
+    <div id="turma-screen" class="screen">
+        <div class="container">
+            <div class="header">
+                <button class="back-btn" onclick="backToMain()" data-translate="back">← Voltar</button>
+                <h1 id="turma-title" data-translate="turma_title">Turma</h1>
+                <button class="logout-btn" onclick="logout()" data-translate="logout">Sair</button>
+            </div>
+            
+            <div class="controls">
+                <h2 data-translate="attendance_title">Chamada e Notas</h2>
+                <p data-translate="date_today">Data: <span id="current-date"></span></p>
+            </div>
+
+            <div class="students-list">
+                <div class="student-header">
+                    <span data-translate="student_name">Nome do Aluno</span>
+                    <span data-translate="attendance">Presença</span>
+                    <span data-translate="grade">Nota</span>
+                </div>
+                
+                <!-- Lista de alunos será preenchida dinamicamente -->
+                <div id="students-container">
+                    <!-- Alunos serão inseridos aqui via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
