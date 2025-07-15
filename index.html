@@ -9,8 +9,8 @@
 <body>
     <!-- Botão de tradução no topo -->
     <div class="language-selector">
-        <button id="btn-pt" class="lang-btn active" onclick="changeLanguage('pt')">🇧🇷 PT</button>
-        <button id="btn-es" class="lang-btn" onclick="changeLanguage('es')">🇵🇾 ES</button>
+        <button id="btn-pt"  class="lang-btn active" onclick="changeLanguage('pt')">🇧🇷 PT</button>
+        <button id="btn-es"  class="lang-btn" onclick="changeLanguage('es')">🇵🇾 ES</button>       
     </div>
 
     <!-- Tela de Login -->
@@ -63,19 +63,20 @@
             <div class="header">
                 <button class="back-btn" onclick="backToMain()" data-translate="back">← Voltar</button>
                 <h1 id="turma-title" data-translate="turma_title">Turma</h1>
+                <button id="generate-pdf" class="pdf-btn">pdf</button>
                 <button class="logout-btn" onclick="logout()" data-translate="logout">Sair</button>
             </div>
             
             <div class="controls">
                 <h2 data-translate="attendance_title">Chamada e Notas</h2>
-                <p data-translate="date_today">Data: <span id="current-date"></span></p>
+                <p data-translate="date_today">Data: <span id="current-date"></span></p>                
             </div>
 
             <div class="students-list">
                 <div class="student-header">
                     <span data-translate="student_name">Nome do Aluno</span>
                     <span data-translate="attendance">Presença</span>
-                    <span data-translate="grade">Nota</span>
+                    <span data-translate="grade">Nota</span>                    
                 </div>
                 
                 <!-- Lista de alunos será preenchida dinamicamente -->
@@ -86,7 +87,10 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="foo.min.js"></script>
+    foo.min
 </body>
 </html>
 
