@@ -70,7 +70,10 @@ const translations = {
         student_name: 'Nome do Aluno',
         attendance: 'Presença',
         grade: 'Nota',
-        present: 'Presente'
+        present: 'Presente',
+        estado: 'ESTADO X',
+        colegio: 'COLÉGIO EXEMPLAR',
+        materia: 'ANÁLISE E PROJETO DE SISTEMAS'
     },
     es: {
         login_title: 'Sistema de Asistencia',
@@ -92,7 +95,10 @@ const translations = {
         student_name: 'Nombre del Estudiante',
         attendance: 'Asistencia',
         grade: 'Nota',
-        present: 'Presente'
+        present: 'Inasistencias',
+        estado: 'ESTADO X',
+        colegio: 'ESCUELA EJEMPLAR',
+        materia: 'ANÁLISIS Y DISEÑO DE SISTEMAS'
     }
 };
 
@@ -155,6 +161,46 @@ function openTurma(turmaId) {
     // Mostrar tela da turma
     showScreen('turma-screen');
 }
+
+
+document.getElementById("generate-pdf").addEventListener("click", () => {   
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+   
+    const t = translations[currentLanguage];
+   
+    const nome_turma = t[mockData[currentTurma].name];
+  
+    const turmaNome = t[`turma_${mockData[currentTurma].name.split("_")[1]}`] || currentTurma;
+    const alunos = mockData[currentTurma].students; 
+
+    const turmaTitle = document.getElementById('turma-title');
+
+    doc.setFontSize(14);
+    doc.text(t.estado, 10, 10);
+    doc.text(t.colegio, 10, 20);
+    doc.text(`${t.materia} - ${nome_turma}`, 10, 30);
+        
+    doc.text(`${t.student_name.padEnd(61)}| ${t.grade.padEnd(6)}| ${t.present}`, 10, 40);
+
+    doc.setFontSize(12);    
+
+    alunos.forEach((aluno, index) => {
+        const y = 50 + index * 8;
+        const nota = (Math.random() * 4 + 6).toFixed(1); // notas entre 6.0 e 10.0
+        const faltas = Math.floor(Math.random() * 5); // até 4 faltas           
+       
+        doc.text(aluno, 10, y);        // Nome do aluno à esquerda
+        doc.text("|  " + nota + "  |", 110, y);        // Nota centralizada na coluna 2
+        doc.text("|  " + `${faltas}` + "  |", 140, y); // Presenças na coluna 3
+        
+    });
+
+    doc.setFontSize(10);
+    doc.text(t.colegio, 10, 280);
+
+    doc.save(`relatorio_${turmaNome}.pdf`);
+});
 
 // Função para gerar lista de alunos
 function generateStudentsList(students) {
@@ -275,4 +321,6 @@ function saveAttendanceAndGrades() {
         '¡Datos guardados exitosamente!';
     alert(message);
 }
+
+
 

@@ -145,6 +145,19 @@ button[type="submit"]:hover {
     transition: background 0.3s ease;
 }
 
+.pdf-btn {
+    background: #4CAF50;
+    color: white;
+    border-color: #4CAF50;    
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+
 .back-btn {
     background: #2196F3;
 }
